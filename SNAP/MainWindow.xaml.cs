@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace SNAP
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'intéraction pour MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
