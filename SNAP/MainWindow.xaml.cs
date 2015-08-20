@@ -25,10 +25,7 @@ namespace SNAP
             InitializeComponent();
         }
 
-        private void click_me_button_Click(object sender, RoutedEventArgs e)
-        {
-            visual1.Text = "hello world";
-        }
+      
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
@@ -40,14 +37,61 @@ namespace SNAP
             this.DragMove();
         }
 
-        private void slider_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void bouton_joueurs_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            visual1.Text = slider.Value.ToString();
+            panel_joueur.Visibility = Visibility.Visible;
+            panel_configuration.Visibility = Visibility.Hidden;
+            panel_terrain.Visibility = Visibility.Hidden;
+            panel_video.Visibility = Visibility.Hidden;
+            panel_stats.Visibility = Visibility.Hidden;
+
         }
 
-        private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void bouton_stats_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            visual1.Text = slider.Value.ToString();
+            panel_stats.Visibility = Visibility.Visible;
+            panel_configuration.Visibility = Visibility.Hidden;
+            panel_terrain.Visibility = Visibility.Hidden;
+            panel_video.Visibility = Visibility.Hidden;
+            panel_joueur.Visibility = Visibility.Hidden;
         }
+
+        private void bouton_terrain_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            panel_terrain.Visibility = Visibility.Visible;
+            panel_configuration.Visibility = Visibility.Hidden;
+            panel_joueur.Visibility = Visibility.Hidden;
+            panel_video.Visibility = Visibility.Hidden;
+            panel_stats.Visibility = Visibility.Hidden;
+        }
+
+        private void bouton_video_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            panel_video.Visibility = Visibility.Visible;
+            panel_configuration.Visibility = Visibility.Hidden;
+            panel_terrain.Visibility = Visibility.Hidden;
+            panel_joueur.Visibility = Visibility.Hidden;
+            panel_stats.Visibility = Visibility.Hidden;
+        }
+
+        private void bouton_configuration_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            panel_configuration.Visibility = Visibility.Visible;
+            panel_joueur.Visibility = Visibility.Hidden;
+            panel_terrain.Visibility = Visibility.Hidden;
+            panel_video.Visibility = Visibility.Hidden;
+            panel_stats.Visibility = Visibility.Hidden;
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //panel_configuration.Visibility = Visibility.Hidden;
+            //panel_joueur.Visibility = Visibility.Hidden;
+            //panel_terrain.Visibility = Visibility.Hidden;
+            //panel_video.Visibility = Visibility.Hidden;
+            //panel_stats.Visibility = Visibility.Hidden;
+        }
+
+        
     }
 }

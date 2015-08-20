@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SNAP"
         xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" x:Class="SNAP.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Visibility="Visible" Background="{x:Null}" IsManipulationEnabled="True" WindowStyle="None" SnapsToDevicePixels="True" AllowsTransparency="True" Cursor="Arrow" BorderThickness="0,0,1,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AllowDrop="True" Width="500" Height="300">
+        Title="MainWindow" Visibility="Visible" Background="{x:Null}" IsManipulationEnabled="True" WindowStyle="None" SnapsToDevicePixels="True" AllowsTransparency="True" Cursor="Arrow" BorderThickness="0,0,1,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AllowDrop="True" Width="1200" Height="700">
     <Window.Resources>
         <DrawingBrush x:Key="click_me" Viewbox="0,0,110.041,27.146" ViewboxUnits="Absolute">
             <DrawingBrush.Drawing>
@@ -646,27 +646,70 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="bouton_navigation_profil_joueur" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Rectangle x:Name="bouton_joueur" Fill="#FFD2DAE6" RadiusY="13.643" RadiusX="13.643" Stroke="#FF9DEE10"/>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle3" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid>
+                            <Rectangle x:Name="panel_button" Fill="#FF031125" RadiusY="13.643" RadiusX="13.643" Opacity="0.8"/>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+        </Style>
+        <Style x:Key="bouton_joueur" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="bouton_joueur" MouseLeftButtonDown="bouton_joueurs_MouseLeftButtonDown">
+                            <Rectangle x:Name="bouton_joueur_conteneur" Fill="#FF0D3C7E" RadiusY="8.769" RadiusX="8.769" Stroke="#FF72F01B" StrokeThickness="2"/>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="#FFE8CCCC"/>
+        </Style>
+        <VisualBrush x:Key="panel_stats" Visual="{Binding ElementName=panel_stats}"/>
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="panel_general">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="497*"/>
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Fill="#FF001430" Margin="9.637,7.417,-9.304,19.428" Stroke="White" RadiusY="8.769" RadiusX="8.769" Opacity="0.95" StrokeThickness="2" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"/>
-        <Button x:Name="click_me_button" Content="click me" Height="28.646" Margin="200.086,0,0,60.474" Style="{DynamicResource ButtonStyle1}" VerticalAlignment="Bottom" FontFamily="Vladimir Script" FontSize="21.333" Foreground="#FFF5E7E7" Click="click_me_button_Click" BorderBrush="#FFFBF2F2" HorizontalAlignment="Left" Width="116.037"/>
-        <TextBlock x:Name="visual1" Height="63.809" Margin="29.389,70.681,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFF0F2F3" Foreground="#FF362D2D" HorizontalAlignment="Left" Width="131.999"><Run Background="#FFF3DEDE" Text=""/></TextBlock>
+        <Rectangle x:Name="visuel_panel_general" Fill="#FF001430" Margin="10,7.417,-9.667,19.428" Stroke="White" RadiusY="8.769" RadiusX="8.769" Opacity="0.95" StrokeThickness="2" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"/>
         <Button x:Name="Close_button" Content="  X" Height="20.666" Margin="0,4.584,-9.304,0" Style="{DynamicResource ButtonClose}" VerticalAlignment="Top" RenderTransformOrigin="0.453,0.524" HorizontalAlignment="Right" Width="21.333" IsCancel="True" IsDefault="True" FontFamily="Vrinda" FontWeight="Bold" Foreground="#FFFBF4F4" BorderThickness="10,10,10,9" Click="button_Click" d:LayoutOverrides="HorizontalAlignment"/>
-        <TextBlock x:Name="nom_application" HorizontalAlignment="Left" Height="19" Margin="23,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="261.333">
-            <TextBlock.Foreground>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="#FFC6E8EE" Offset="1"/>
-                    <GradientStop Color="#FF18FBDC"/>
-                    <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="#FF569599" Offset="0.861"/>
-                </LinearGradientBrush>
-            </TextBlock.Foreground><Run Text="SNA"/><Run Text="P"/><Run Text=", a"/><Run Text=" "/><Run Text="p"/><Run Text="roject "/><Run Text="lead "/><Run Text="by Sousou and torpilleur"/></TextBlock>
-        <Slider x:Name="slider" Height="51.833" Margin="29.389,148.917,0,0" VerticalAlignment="Top" Style="{DynamicResource SliderStyle1}" HorizontalAlignment="Left" Width="88.377" MouseLeftButtonDown="slider_MouseLeftButtonDown" ValueChanged="slider_ValueChanged"/>
-        <TextBlock x:Name="valeur_slider" Height="19" Margin="129.516,154,255.146,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Valeur d'essai">
+        <TextBlock x:Name="nom_application" Height="34" Margin="26,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="SNAP_application" FontSize="21.333" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Width="182.333">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FFC6E8EE" Offset="1"/>
@@ -675,5 +718,116 @@
                     <GradientStop Color="#FF569599" Offset="0.861"/>
                 </LinearGradientBrush>
             </TextBlock.Foreground></TextBlock>
+        <Grid x:Name="panel_button_general" HorizontalAlignment="Right" Margin="0,114.681,0,115.75" Width="91.867">
+            <Rectangle x:Name="visuel_panel__button_general" Fill="#FF021025" RadiusY="8.769" RadiusX="8.769" StrokeThickness="2" Opacity="0.8"/>
+            <Button x:Name="bouton_joueurs" Content="Button" Height="52" Margin="20.5,22.069,19.367,0" Style="{DynamicResource bouton_joueur}" VerticalAlignment="Top"/>
+            <Button x:Name="bouton_stats" Content="Button" Height="52" Margin="20.5,109.069,19.367,0" Style="{DynamicResource ButtonStyle1}" VerticalAlignment="Top">
+                <Button.Resources>
+                    <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Grid x:Name="bouton_stats" MouseLeftButtonDown="bouton_stats_MouseLeftButtonDown">
+                                        <Rectangle x:Name="bouton_stats_conteneur" Fill="#FF0D3C7E" RadiusY="8.769" RadiusX="8.769" Stroke="#FF72F01B" StrokeThickness="2"/>
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsFocused" Value="True"/>
+                                        <Trigger Property="IsDefaulted" Value="True"/>
+                                        <Trigger Property="IsMouseOver" Value="True"/>
+                                        <Trigger Property="IsPressed" Value="True"/>
+                                        <Trigger Property="IsEnabled" Value="False"/>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="bouton_terrain" Content="Button" Margin="20.5,204.069,19.367,213.5" Style="{DynamicResource ButtonStyle1}">
+                <Button.Resources>
+                    <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Grid x:Name="bouton_terrain" MouseLeftButtonDown="bouton_terrain_MouseLeftButtonDown">
+                                        <Rectangle x:Name="bouton_terrain_conteneur" Fill="#FF0D3C7E" RadiusY="8.769" RadiusX="8.769" Stroke="#FF72F01B" StrokeThickness="2"/>
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsFocused" Value="True"/>
+                                        <Trigger Property="IsDefaulted" Value="True"/>
+                                        <Trigger Property="IsMouseOver" Value="True"/>
+                                        <Trigger Property="IsPressed" Value="True"/>
+                                        <Trigger Property="IsEnabled" Value="False"/>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="bouton_configuration" Content="Button" Height="52" Margin="20.5,389.069,19.367,0" Style="{DynamicResource ButtonStyle1}" VerticalAlignment="Top">
+                <Button.Resources>
+                    <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Grid x:Name="bouton_configuration" MouseLeftButtonDown="bouton_configuration_MouseLeftButtonDown">
+                                        <Rectangle x:Name="bouton_configuration_conteneur" Fill="#FF0D3C7E" RadiusY="8.769" RadiusX="8.769" Stroke="#FF72F01B" StrokeThickness="2"/>
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsFocused" Value="True"/>
+                                        <Trigger Property="IsDefaulted" Value="True"/>
+                                        <Trigger Property="IsMouseOver" Value="True"/>
+                                        <Trigger Property="IsPressed" Value="True"/>
+                                        <Trigger Property="IsEnabled" Value="False"/>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="bouton_video" Content="Button" Height="52" Margin="20.5,0,19.367,120.5" Style="{DynamicResource ButtonStyle1}" VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment">
+                <Button.Resources>
+                    <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Grid x:Name="bouton_video" MouseLeftButtonDown="bouton_video_MouseLeftButtonDown">
+                                        <Rectangle x:Name="bouton_video_conteneur" Fill="#FF0D3C7E" RadiusY="8.769" RadiusX="8.769" Stroke="#FF72F01B" StrokeThickness="2"/>
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsFocused" Value="True"/>
+                                        <Trigger Property="IsDefaulted" Value="True"/>
+                                        <Trigger Property="IsMouseOver" Value="True"/>
+                                        <Trigger Property="IsPressed" Value="True"/>
+                                        <Trigger Property="IsEnabled" Value="False"/>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+        <Grid x:Name="panel_joueur" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom">
+            <Rectangle x:Name="visuel_panel_joueur" Fill="#FF632109" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2"/>
+        </Grid>
+        <Grid x:Name="panel_stats" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom">
+            <Rectangle x:Name="visuel_panel_stats" Fill="#FF073000" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2"/>
+        </Grid>
+        <Grid x:Name="panel_terrain" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom">
+            <Rectangle x:Name="visuel_panel_terrain" Fill="#FFCBC319" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2"/>
+        </Grid>
+        <Grid x:Name="panel_video" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom">
+            <Rectangle x:Name="visuel_panel_video" Fill="#FFAA2CAA" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2"/>
+        </Grid>
+        <Grid x:Name="panel_configuration" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom">
+            <Rectangle x:Name="visuel_panel_configuration" Fill="#FF1752CF" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2"/>
+        </Grid>
     </Grid>
 </Window>
