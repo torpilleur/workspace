@@ -58,12 +58,6 @@
     <Compile Include="buttonControl.xaml.cs">
       <DependentUpon>buttonControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="slider.xaml.cs">
-      <DependentUpon>slider.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Window_ajouter_joueur.xaml.cs">
-      <DependentUpon>Window_ajouter_joueur.xaml</DependentUpon>
-    </Compile>
     <Page Include="buttonControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -87,14 +81,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="slider.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Window_ajouter_joueur.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
