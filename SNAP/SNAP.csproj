@@ -55,9 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="buttonControl.xaml.cs">
+      <DependentUpon>buttonControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="slider.xaml.cs">
       <DependentUpon>slider.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window_ajouter_joueur.xaml.cs">
+      <DependentUpon>Window_ajouter_joueur.xaml</DependentUpon>
+    </Compile>
+    <Page Include="buttonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="click me control.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -78,6 +88,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="slider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window_ajouter_joueur.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,6 +122,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icone_compte.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icone_appli.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="stats.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="partie_airsoft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="terrain-ville_008.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
