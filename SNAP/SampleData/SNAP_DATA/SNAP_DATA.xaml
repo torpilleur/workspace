@@ -1,0 +1,22 @@
+﻿<!--
+      *********    NE PAS MODIFIER CE FICHIER     *********
+      Ce fichier est régénéré par un outil de création.Modifier
+ .     ce fichier peut provoquer des erreurs.
+-->
+<SampleData:SNAP_DATA xmlns:SampleData="clr-namespace:Expression.Blend.SampleData.SNAP_DATA">
+	<SampleData:SNAP_DATA.Joueurs>
+		<SampleData:JoueursItem Nom="Damien" Surnom="Torpilleur" Arme_primaire="MP5"/>
+	</SampleData:SNAP_DATA.Joueurs>
+	<SampleData:SNAP_DATA.résultats>
+		<SampleData:résultatsItem participation="Aliquam aenean"/>
+		<SampleData:résultatsItem participation="Nam maecenas class integer"/>
+		<SampleData:résultatsItem participation="Curae praesent sed mauris"/>
+		<SampleData:résultatsItem participation="Donec etiam cras nullam"/>
+		<SampleData:résultatsItem participation="Quisque dis duis"/>
+		<SampleData:résultatsItem participation="Accumsan vivamus bibendum"/>
+		<SampleData:résultatsItem participation="Fusce aptent lorem"/>
+		<SampleData:résultatsItem participation="Morbi auctor"/>
+		<SampleData:résultatsItem participation="Dictumst est eleifend facilisi"/>
+		<SampleData:résultatsItem participation="Aliquam nunc hac"/>
+	</SampleData:SNAP_DATA.résultats>
+</SampleData:SNAP_DATA>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+      *********    NE PAS MODIFIER CE FICHIER     *********
+      Ce fichier est régénéré par un outil de création.Modifier
+ .     ce fichier peut provoquer des erreurs.
+-->
+<xs:schema xmlns:blend="http://schemas.microsoft.com/expression/blend/2008" xmlns:tns="Expression.Blend.SampleData.SNAP_DATA" targetNamespace="Expression.Blend.SampleData.SNAP_DATA" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SNAP_DATA" type="tns:SNAP_DATA" />
+  <xs:complexType name="SNAP_DATA">
+    <xs:sequence>
+      <xs:element name="Joueurs" type="tns:Joueurs" />
+      <xs:element name="résultats" type="tns:résultats" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Joueurs">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="JoueursItem" type="tns:JoueursItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="JoueursItem">
+    <xs:attribute name="Nom" type="xs:string" />
+    <xs:attribute blend:Format="Lorem ipsum" blend:FormatParameters="4,8" name="Surnom" type="xs:string" />
+    <xs:attribute name="Arme_primaire" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="résultats">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="résultatsItem" type="tns:résultatsItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="résultatsItem">
+    <xs:attribute name="participation" type="xs:string" />
+  </xs:complexType>
+</xs:schema>

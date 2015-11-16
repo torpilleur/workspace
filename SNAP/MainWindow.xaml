@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SNAP"
-        xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" x:Class="SNAP.MainWindow"
+        xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" xmlns:Entity="clr-namespace:System.Data.Entity;assembly=EntityFramework" x:Class="SNAP.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Visibility="Visible" Background="{x:Null}" IsManipulationEnabled="True" WindowStyle="None" SnapsToDevicePixels="True" AllowsTransparency="True" Cursor="Arrow" BorderThickness="0,0,1,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AllowDrop="True" Width="1200" Height="700">
     <Window.Resources>
@@ -1237,7 +1237,7 @@
         </Style>
 
     </Window.Resources>
-    <Grid x:Name="panel_general">
+    <Grid x:Name="panel_general" DataContext="{Binding Source={StaticResource SNAP_DATA}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="497*"/>
             <ColumnDefinition Width="20*"/>
@@ -1549,7 +1549,7 @@
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
-            <Popup x:Name="Popup_Rens_Joueur" Margin="0,0,0,-264" AllowsTransparency="True" Placement="Absolute" IsManipulationEnabled="True" PopupAnimation="Slide">
+            <Popup x:Name="Popup_Rens_Joueur" Margin="0,0,0,-264" AllowsTransparency="True" Placement="Absolute" IsManipulationEnabled="True" PopupAnimation="Slide" d:IsHidden="True">
                 <Grid x:Name="Popup_content_Rens_Joueur" Height="588.77" Width="934.274" RenderTransformOrigin="0.5,0.5" IsManipulationEnabled="True">
                     <Grid.RenderTransform>
                         <TransformGroup>
@@ -1622,8 +1622,20 @@
                 </Grid>
             </Popup>
         </Grid>
-        <Grid x:Name="panel_stats" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom" d:IsHidden="True">
+        <Grid x:Name="panel_stats" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom">
             <Rectangle x:Name="visuel_panel_stats" Fill="#FF073000" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2"/>
+            <DataGrid x:Name="dataGrid" Margin="50,44.333,189.75,168.239" ItemsSource="{Binding Joueurs}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn/>
+                    <DataGridTextColumn/>
+                    <DataGridTextColumn/>
+                    <DataGridTextColumn/>
+                    <DataGridTextColumn/>
+                    <DataGridTextColumn Binding="{Binding Arme_primaire}" Header="Arme_primaire"/>
+                    <DataGridTextColumn Binding="{Binding Nom}" Header="Nom"/>
+                    <DataGridTextColumn Binding="{Binding Surnom}" Header="Surnom"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
         <Grid x:Name="panel_terrain" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom" d:IsHidden="True">
             <Rectangle x:Name="visuel_panel_terrain" Fill="#FFCBC319" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2"/>

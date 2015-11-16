@@ -25,7 +25,19 @@ namespace SNAP
             InitializeComponent();
         }
 
-      
+        /**************************************FONCTIONS ajoutés par administrateur**************************/
+
+        public void Afficher_Joueurs()
+        {
+            Provider_joueurs_db P_joueurs_db = new Provider_joueurs_db();
+            foreach (Entity_joueurs_db joueurs in P_joueurs_db.Get_All_Joueurs())
+            {
+                Console.WriteLine(joueurs);
+            }
+
+        }
+
+      /**************************************FIN FONCTIONS ajoutées par administrateur********************************/
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
@@ -116,8 +128,13 @@ namespace SNAP
             Rens_profil.Document.Blocks.Clear();
 
             //récupérer les infos des text box (test si vide)
+
+            
             //ajouter le joueur en base de donnée aprés vérification de l'existant (pas deux joueurs avec le meme nom)
-           
+            /*Afficher_Joueurs();
+            Console.WriteLine("Fin");
+            Console.ReadLine();*/
+            
             //fermer la popup
             Popup_Rens_Joueur.IsOpen = false;
             //rendre les autres bouons actifs
