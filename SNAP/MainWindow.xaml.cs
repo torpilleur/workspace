@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SNAP.Database;
 
 namespace SNAP
 {
@@ -25,7 +26,32 @@ namespace SNAP
             InitializeComponent();
         }
 
-      
+        /**************************************FONCTIONS ajoutés par administrateur**************************/
+
+        public void Afficher_Joueurs()
+        {
+            using (var ctx = new SNAP_DATABASE())
+            {
+                Entity_joueurs Joueur = new Entity_joueurs
+                {
+
+                    Nom = "Damien",
+                    Surnom = "torpilleur",
+                    Arme_primaire = "mp5",
+                    Arme_secondaire = "M92",
+                    Profil = "meneur",
+                };
+                
+              
+
+                ctx.Table_Joueurs.Add(Joueur);
+                ctx.SaveChanges();
+            }
+
+        }
+
+        /**************************************FIN FONCTIONS ajoutées par administrateur********************************/
+
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
@@ -116,8 +142,12 @@ namespace SNAP
             Rens_profil.Document.Blocks.Clear();
 
             //récupérer les infos des text box (test si vide)
+            Afficher_Joueurs();
+    
+            Console.WriteLine("Fin");
+            Console.ReadLine();
             //ajouter le joueur en base de donnée aprés vérification de l'existant (pas deux joueurs avec le meme nom)
-           
+
             //fermer la popup
             Popup_Rens_Joueur.IsOpen = false;
             //rendre les autres bouons actifs
