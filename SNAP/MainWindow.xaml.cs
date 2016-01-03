@@ -24,29 +24,81 @@ namespace SNAP
         public MainWindow()
         {
             InitializeComponent();
+
+            
         }
 
-        /**************************************FONCTIONS ajoutés par administrateur**************************/
+        //création de la base de donnée pour le projet SNAP.
 
+        public SNAP_DATABASE Ctx_database_SNAP = new SNAP_DATABASE();
+        
+
+
+        /**************************************FONCTIONS ajoutées par administrateur**************************/
         public void Afficher_Joueurs()
         {
-            using (var ctx = new SNAP_DATABASE())
+            
+            dataGrid.ItemsSource = Ctx_database_SNAP.Table_Joueurs.ToList();
+
+
+
+        }
+        public bool Ajouter_Joueurs(SNAP_DATABASE Contexte_database,string Nom_joueur, string Surnom_joueur, string Arme_primaire_joueur, string Arme_secondaire_joueur,string Profil_joueur)
+        {
+            //regarder si les chanmps ne sont pas vides
+            if (Nom_joueur != "" && Surnom_joueur != "" && Arme_primaire_joueur != "" && Arme_secondaire_joueur != "" && Profil_joueur != "")
+            //regarder si le joueur est déjà présent
             {
-                Entity_joueurs Joueur = new Entity_joueurs
+                var Liste_joueurs = Contexte_database.Database.SqlQuery<string>("SELECT Surnom FROM Entity_joueurs").ToList();
+                for(int i =0;i<Liste_joueurs.Count();i++)
+                {
+                    if (Liste_joueurs.ElementAt(i).ToString().Equals(Surnom_joueur))
+                    {
+                        MessageBox.Show("Ce surnom est déjà utilisé. Choisir un autre surnom");
+                        return false;
+                    }
+                }
+                    Entity_joueurs Joueur = new Entity_joueurs
                 {
 
-                    Nom = "Damien",
-                    Surnom = "torpilleur",
-                    Arme_primaire = "mp5",
-                    Arme_secondaire = "M92",
-                    Profil = "meneur",
+                    Nom = Nom_joueur,
+                    Surnom = Surnom_joueur,
+                    Arme_primaire = Arme_primaire_joueur,
+                    Arme_secondaire = Arme_secondaire_joueur,
+                    Profil = Profil_joueur,
                 };
-                
-              
 
-                ctx.Table_Joueurs.Add(Joueur);
-                ctx.SaveChanges();
+                Contexte_database.Table_Joueurs.Add(Joueur);
+                Contexte_database.SaveChanges();
+                return true;
             }
+            else
+            {
+                MessageBox.Show("Les champs ne doivent pas être vides"+"\nLes champs non applicables doivent être remplis avec NA" );
+                return false;
+            }
+
+        }
+        public bool Modifier_Joueurs(SNAP_DATABASE Contexte_database, string Nom_joueur, string Surnom_joueur, string Arme_primaire_joueur, string Arme_secondaire_joueur, string Profil_joueur)
+        {
+            
+            //regarder si les chanmps ne sont pas vides
+            if (Nom_joueur != "" && Surnom_joueur != "" && Arme_primaire_joueur != "" && Arme_secondaire_joueur != "" && Profil_joueur != "")
+            //regarder si le joueur est déjà présent
+            {
+                var index_joueur =Contexte_database.Database.SqlQuery<int>("SELECT id FROM Entity_Joueurs WHERE Surnom ='" + Surnom_joueur + "'").ToList().ElementAt(0);
+
+               
+                Contexte_database.Database.ExecuteSqlCommand("UPDATE Entity_joueurs SET Arme_primaire ='"+ Arme_primaire_joueur+"',Arme_secondaire='"+Arme_secondaire_joueur+"',Profil='"+Profil_joueur+"' WHERE id="+ index_joueur);
+                Contexte_database.SaveChanges();
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Les champs ne doivent pas être vides" + "\nLes champs non applicables doivent être remplis avec NA");
+                return false;
+            }
+
 
         }
 
@@ -70,6 +122,7 @@ namespace SNAP
             panel_terrain.Visibility = Visibility.Hidden;
             panel_video.Visibility = Visibility.Hidden;
             panel_stats.Visibility = Visibility.Hidden;
+            Afficher_Joueurs();
 
         }
 
@@ -125,7 +178,14 @@ namespace SNAP
             bouton_configuration.IsEnabled = false;
             bouton_terrain.IsEnabled = false;
             bouton_partie.IsEnabled = false;
-        
+
+            //vider les champs
+            Rens_nom.Text = "";
+            Rens_surnom.Text = "";
+            Rens_arme_primaire.Text = "";
+            Rens_arme_secondaire.Text = "";
+            Rens_profil.Text = "";
+
 
         }
 
@@ -133,30 +193,23 @@ namespace SNAP
 
         private void Popup_bouton_ajouter_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //todo:
-            //vider les champs
-            Rens_nom.Document.Blocks.Clear();
-            Rens_surnom.Document.Blocks.Clear();
-            Rens_arme_primaire.Document.Blocks.Clear();
-            Rens_arme_secondaire.Document.Blocks.Clear();
-            Rens_profil.Document.Blocks.Clear();
-
-            //récupérer les infos des text box (test si vide)
-            Afficher_Joueurs();
-    
-            Console.WriteLine("Fin");
-            Console.ReadLine();
+            bool Success_ajout_joueur = false;
+            
             //ajouter le joueur en base de donnée aprés vérification de l'existant (pas deux joueurs avec le meme nom)
-
-            //fermer la popup
-            Popup_Rens_Joueur.IsOpen = false;
-            //rendre les autres bouons actifs
-            button_modifier_joueur.IsEnabled = true;
-            button_supprimer_joueur.IsEnabled = true;
-            bouton_stats.IsEnabled = true;
-            bouton_configuration.IsEnabled = true;
-            bouton_terrain.IsEnabled = true;
-            bouton_partie.IsEnabled = true;
+            Success_ajout_joueur= Ajouter_Joueurs(Ctx_database_SNAP, Rens_nom.Text.ToString(), Rens_surnom.Text.ToString(), Rens_arme_primaire.Text.ToString(), Rens_arme_secondaire.Text.ToString(), Rens_profil.Text.ToString());
+            Afficher_Joueurs();
+            if (Success_ajout_joueur == true)
+            {
+                //fermer la popup
+                Popup_Rens_Joueur.IsOpen = false;
+                //rendre les autres bouons actifs
+                button_modifier_joueur.IsEnabled = true;
+                button_supprimer_joueur.IsEnabled = true;
+                bouton_stats.IsEnabled = true;
+                bouton_configuration.IsEnabled = true;
+                bouton_terrain.IsEnabled = true;
+                bouton_partie.IsEnabled = true;
+            }
         }
 
         private void Popup_bouton_annuler_MouseleftButtonDown(object sender, MouseButtonEventArgs e)
@@ -182,7 +235,7 @@ namespace SNAP
 
         private void panel_joueur_bouton_modifier_mouseleftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //todo:
+            
             //rendre inactif les autres boutons
             button_ajouter_joueur.IsEnabled = false;
             button_supprimer_joueur.IsEnabled = false;
@@ -191,18 +244,44 @@ namespace SNAP
             bouton_terrain.IsEnabled = false;
             bouton_partie.IsEnabled = false;
             //viderles champs:
-            Modif_nom.Document.Blocks.Clear();
-            Modif_Surnom.Document.Blocks.Clear();
-            Modif_Arme_primaire.Document.Blocks.Clear();
-            Modif_Arme_secondaire.Document.Blocks.Clear();
-            Modif_Profil.Document.Blocks.Clear();
-            
+            Modif_Nom.Text = "";
+            Modif_Surnom.Text = "";
+            Modif_Arme_primaire.Text = "";
+            Modif_Arme_secondaire.Text = "";
+            Modif_Profil.Text = "";
+
 
             //system de checkbox pour sélectionner un joueur?
-            //Récupération des infos en base de données.
+     
+            int index = dataGrid.SelectedIndex;
+            if (index != -1)
+            {
 
-            //affichage d'une popup "modifier joueur" avec les champs préremplis
-            Popup_Modif_Joueur.IsOpen = true;
+               Entity_joueurs Joueur_to_modify= Ctx_database_SNAP.Table_Joueurs.Find(index+1);
+
+                //récupération du nom et du surnom
+                Modif_Nom.Text = Joueur_to_modify.Nom;
+                Modif_Surnom.Text = Joueur_to_modify.Surnom;
+                Modif_Arme_primaire.Text = Joueur_to_modify.Arme_primaire;
+                Modif_Arme_secondaire.Text = Joueur_to_modify.Arme_secondaire;
+                Modif_Profil.Text = Joueur_to_modify.Profil ;
+
+                //affichage d'une popup "modifier joueur" avec les champs préremplis
+                Popup_Modif_Joueur.IsOpen = true;
+
+            }
+            else {
+                MessageBox.Show("Veuillez séléctionner un joueur dans la liste");
+                //rendre inactif les autres boutons
+                button_ajouter_joueur.IsEnabled = true;
+                button_supprimer_joueur.IsEnabled = true;
+                bouton_stats.IsEnabled = true;
+                bouton_configuration.IsEnabled = true;
+                bouton_terrain.IsEnabled = true;
+                bouton_partie.IsEnabled = true;
+
+            }
+
 
         }
 
@@ -210,18 +289,23 @@ namespace SNAP
         {
             //todo:
             // récupération des données
-            //mise à jour de la bse de données
+            //mise à jour de la base de données
+            bool Success_modif_joueur = Modifier_Joueurs(Ctx_database_SNAP, Modif_Nom.Text, Modif_Surnom.Text, Modif_Arme_primaire.Text, Modif_Arme_secondaire.Text, Modif_Profil.Text);
             //message de confirmation base de donnée à jour.
-
-            //fermer la popup
-            Popup_Modif_Joueur.IsOpen = false;
-            //rendre les autres boutons actifs
-            button_ajouter_joueur.IsEnabled = true;
-            button_supprimer_joueur.IsEnabled = true;
-            bouton_stats.IsEnabled = true;
-            bouton_configuration.IsEnabled = true;
-            bouton_terrain.IsEnabled = true;
-            bouton_partie.IsEnabled = true;
+            Afficher_Joueurs();
+            if (Success_modif_joueur == true)
+            {
+                //fermer la popup
+                Popup_Modif_Joueur.IsOpen = false;
+                //rendre les autres boutons actifs
+                button_ajouter_joueur.IsEnabled = true;
+                button_supprimer_joueur.IsEnabled = true;
+                bouton_stats.IsEnabled = true;
+                bouton_configuration.IsEnabled = true;
+                bouton_terrain.IsEnabled = true;
+                bouton_partie.IsEnabled = true;
+            }
+            
 
         }
 

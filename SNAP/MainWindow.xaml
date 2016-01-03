@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SNAP"
-        xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" x:Class="SNAP.MainWindow"
+        xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" xmlns:Database="clr-namespace:SNAP.Database" x:Class="SNAP.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Visibility="Visible" Background="{x:Null}" IsManipulationEnabled="True" WindowStyle="None" SnapsToDevicePixels="True" AllowsTransparency="True" Cursor="Arrow" BorderThickness="0,0,1,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" AllowDrop="True" Width="1200" Height="700">
     <Window.Resources>
@@ -1242,7 +1242,7 @@
             <ColumnDefinition Width="497*"/>
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Fill="#FF021D44" Margin="10,7.417,-9.667,19.428" Stroke="White" RadiusY="8.769" RadiusX="8.769" Opacity="0.95" StrokeThickness="2" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"/>
+        <Rectangle Fill="#FF021D44" Margin="10,7.417,-9.667,19.428" Stroke="White" RadiusY="8.769" RadiusX="8.769" Opacity="0.75" StrokeThickness="2" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"/>
         <Button x:Name="Close_button" Content="  X" Height="20.666" Margin="0,4.584,-9.304,0" Style="{DynamicResource ButtonClose}" VerticalAlignment="Top" RenderTransformOrigin="0.453,0.524" HorizontalAlignment="Right" Width="21.333" IsCancel="True" IsDefault="True" FontFamily="Vrinda" FontWeight="Bold" Foreground="#FFFBF4F4" BorderThickness="10,10,10,9" Click="button_Click" d:LayoutOverrides="HorizontalAlignment"/>
         <TextBlock x:Name="nom_application" Height="34" Margin="73,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="SNAP_application" FontSize="21.333" FontFamily="Comic Sans MS" HorizontalAlignment="Left" Width="182.333">
             <TextBlock.Foreground>
@@ -1250,7 +1250,7 @@
                     <GradientStop Color="#FFC6E8EE" Offset="1"/>
                     <GradientStop Color="#FF18FBDC"/>
                     <GradientStop Color="Black" Offset="1"/>
-                    <GradientStop Color="#FF17647F" Offset="0.861"/>
+                    <GradientStop Color="#FF26D0DE" Offset="0.861"/>
                 </LinearGradientBrush>
             </TextBlock.Foreground></TextBlock>
         <Ellipse x:Name="icone_appli" HorizontalAlignment="Left" Height="51" Stroke="White" StrokeThickness="2" VerticalAlignment="Top" Width="58">
@@ -1533,22 +1533,6 @@
                 <Button x:Name="button_supprimer_joueur" Content="Supprimer" Height="34.5" Margin="0,-72.5,-728,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle7}" FontSize="18.667" FontFamily="Lucida Calligraphy" Foreground="#FFF1F0F0" HorizontalAlignment="Right" Width="163"/>
                 <Button x:Name="button_modifier_joueur" Content="Modifier" Height="34.5" Margin="0,-72.5,-475,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle8}" FontSize="18.667" FontFamily="Lucida Calligraphy" Foreground="#FFF1F0F0" HorizontalAlignment="Right" Width="163"/>
             </Grid>
-            <RichTextBox x:Name="richTextBox" Margin="38,90.75,31.75,37.572" Background="#FF33444F" Foreground="#FF0EC3E0" FontSize="18.667" d:IsHidden="True">
-                <FlowDocument>
-                    <Paragraph>
-                        <Run Text="Nom            | Surnom         | arme principale       | arme secondaire    |  nombre de participation      | Profil"/>
-                    </Paragraph>
-                    <Paragraph>
-                        <Run Text="Damien        | Torpilleur      |  MP5 A2                  |  M9 spécial             |       3                                      | Meneur"/>
-                    </Paragraph>
-                    <Paragraph>
-                        <Run Text="Sébastien     |  NA               |  Colt 1947               |      NA                     |       3                                      | Samourai"/>
-                    </Paragraph>
-                    <Paragraph>
-                        <Run Text=" "/>
-                    </Paragraph>
-                </FlowDocument>
-            </RichTextBox>
             <Popup x:Name="Popup_Rens_Joueur" Margin="0,0,0,-264" AllowsTransparency="True" Placement="Absolute" IsManipulationEnabled="True" PopupAnimation="Slide">
                 <Grid x:Name="Popup_content_Rens_Joueur" Height="588.77" Width="934.274" RenderTransformOrigin="0.5,0.5" IsManipulationEnabled="True">
                     <Grid.RenderTransform>
@@ -1566,23 +1550,13 @@
                     <TextBlock x:Name="Text_arme_prim" HorizontalAlignment="Left" Margin="229.391,0,0,221.261" TextWrapping="Wrap" Width="164.389" FontSize="18.667" Foreground="#FFF9F9F9" Height="27.577" VerticalAlignment="Bottom"><Run Text="Arme Primaire "/><Run Text="     "/><Run Text=": "/></TextBlock>
                     <TextBlock x:Name="Text_arm_secon" HorizontalAlignment="Left" Margin="229.391,0,0,153.273" TextWrapping="Wrap" Text="Arme Secondaire : " Width="164.389" FontSize="18.667" Foreground="#FFF9F9F9" Height="27.577" VerticalAlignment="Bottom"/>
                     <TextBlock x:Name="Text_profil" HorizontalAlignment="Left" Margin="229.391,0,0,89.708" TextWrapping="Wrap" Width="164.389" FontSize="18.667" Foreground="#FFF9F9F9" Height="27.577" VerticalAlignment="Bottom"><Run Text="Profil     "/><Run Text="    "/><Run Text="           : "/></TextBlock>
-                    <RichTextBox x:Name="Rens_nom" Height="27.577" Margin="410.772,210.908,310.468,0" VerticalAlignment="Top" FontSize="18.667">
-                        <FlowDocument/>
-                    </RichTextBox>
-                    <RichTextBox x:Name="Rens_surnom" Margin="410.772,274.908,310.468,286.285" FontSize="18.667">
-                        <FlowDocument/>
-                    </RichTextBox>
-                    <RichTextBox x:Name="Rens_arme_primaire" Height="27.577" Margin="410.772,0,310.468,221.261" VerticalAlignment="Bottom" FontSize="18.667">
-                        <FlowDocument/>
-                    </RichTextBox>
-                    <RichTextBox x:Name="Rens_arme_secondaire" Height="27.577" Margin="410.772,0,310.468,153.273" VerticalAlignment="Bottom" FontSize="18.667">
-                        <FlowDocument/>
-                    </RichTextBox>
-                    <RichTextBox x:Name="Rens_profil" Height="27.577" Margin="410.772,0,310.468,89.708" VerticalAlignment="Bottom" FontSize="18.667">
-                        <FlowDocument/>
-                    </RichTextBox>
                     <Button x:Name="Bouton_ajouter_popup_Rens" Content="Ajouter" HorizontalAlignment="Left" Height="35.462" Margin="258.946,0,0,22.387" Style="{DynamicResource ButtonStyle5}" VerticalAlignment="Bottom" Width="134.834" FontSize="18.667" FontFamily="Lucida Bright" Foreground="#FFF1ECEC"/>
                     <Button x:Name="Bouton_annuler_popup_Rens" Content="Annuler" Height="35.462" Margin="0,0,310.468,22.387" Style="{DynamicResource ButtonStyle6}" VerticalAlignment="Bottom" FontSize="18.667" FontFamily="Lucida Bright" Foreground="#FFF1ECEC" HorizontalAlignment="Right" Width="134.834"/>
+                    <TextBox x:Name="Rens_nom" HorizontalAlignment="Left" Height="23" Margin="411,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
+                    <TextBox x:Name="Rens_surnom" HorizontalAlignment="Left" Height="23" Margin="411,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
+                    <TextBox x:Name="Rens_arme_primaire" HorizontalAlignment="Left" Height="23" Margin="411,345,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
+                    <TextBox x:Name="Rens_arme_secondaire" HorizontalAlignment="Left" Height="23" Margin="411,413,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
+                    <TextBox x:Name="Rens_profil" HorizontalAlignment="Left" Height="23" Margin="411,476,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
                 </Grid>
             </Popup>
             <Popup x:Name="Popup_Modif_Joueur" Margin="0,0,0,-264" AllowsTransparency="True" Placement="Absolute" PopupAnimation="Slide" IsManipulationEnabled="True">
@@ -1602,25 +1576,16 @@
                     <TextBlock x:Name="Text_arme_prim_modif" HorizontalAlignment="Left" Margin="229.391,0,0,221.261" TextWrapping="Wrap" Width="164.389" FontSize="18.667" Foreground="#FFF9F9F9" Height="27.577" VerticalAlignment="Bottom"><Run Text="Arme Primaire "/><Run Text="     "/><Run Text=": "/></TextBlock>
                     <TextBlock x:Name="Text_arm_secon_modif" HorizontalAlignment="Left" Margin="229.391,0,0,153.273" TextWrapping="Wrap" Text="Arme Secondaire : " Width="164.389" FontSize="18.667" Foreground="#FFF9F9F9" Height="27.577" VerticalAlignment="Bottom"/>
                     <TextBlock x:Name="Text_profil_modif" HorizontalAlignment="Left" Margin="229.391,0,0,89.708" TextWrapping="Wrap" Width="164.389" FontSize="18.667" Foreground="#FFF9F9F9" Height="27.577" VerticalAlignment="Bottom"><Run Text="Profil     "/><Run Text="    "/><Run Text="           : "/></TextBlock>
-                    <RichTextBox x:Name="Modif_nom" Height="27.577" Margin="410.772,210.908,310.468,0" VerticalAlignment="Top" FontSize="18.667" AcceptsReturn="False">
-                        <FlowDocument/>
-                    </RichTextBox>
-                    <RichTextBox x:Name="Modif_Surnom" Margin="410.772,274.908,310.468,286.285" FontSize="18.667">
-                        <FlowDocument/>
-                    </RichTextBox>
-                    <RichTextBox x:Name="Modif_Arme_primaire" Height="27.577" Margin="410.772,0,310.468,221.261" VerticalAlignment="Bottom" FontSize="18.667">
-                        <FlowDocument/>
-                    </RichTextBox>
-                    <RichTextBox x:Name="Modif_Arme_secondaire" Height="27.577" Margin="410.772,0,310.468,153.273" VerticalAlignment="Bottom" FontSize="18.667">
-                        <FlowDocument/>
-                    </RichTextBox>
-                    <RichTextBox x:Name="Modif_Profil" Height="27.577" Margin="410.772,0,310.468,89.708" VerticalAlignment="Bottom" FontSize="18.667">
-                        <FlowDocument/>
-                    </RichTextBox>
                     <Button x:Name="Bouton_modifier_popup_modif" Content="Modifier" HorizontalAlignment="Left" Height="35.462" Margin="258.946,0,0,22.387" Style="{DynamicResource ButtonStyle9}" VerticalAlignment="Bottom" Width="134.834" FontSize="18.667" FontFamily="Lucida Bright" Foreground="#FFF1ECEC"/>
                     <Button x:Name="Bouton_annuler_popup_modif" Content="Annuler" Height="35.462" Margin="0,0,310.468,22.387" Style="{DynamicResource ButtonStyle10}" VerticalAlignment="Bottom" FontSize="18.667" FontFamily="Lucida Bright" Foreground="#FFF1ECEC" HorizontalAlignment="Right" Width="134.834"/>
+                    <TextBox x:Name="Modif_Nom" HorizontalAlignment="Left" Height="27" Margin="411,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213" IsReadOnly="True" Background="#FFAEAEAE"/>
+                    <TextBox x:Name="Modif_Surnom" HorizontalAlignment="Left" Height="27" Margin="411,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213" IsReadOnly="True" Background="#FFAEAEAE"/>
+                    <TextBox x:Name="Modif_Arme_primaire" HorizontalAlignment="Left" Height="27" Margin="411,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
+                    <TextBox x:Name="Modif_Arme_secondaire" HorizontalAlignment="Left" Height="27" Margin="411,408,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
+                    <TextBox x:Name="Modif_Profil" HorizontalAlignment="Left" Height="27" Margin="411,472,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
                 </Grid>
             </Popup>
+            <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="24,70,0,0" VerticalAlignment="Top" Height="501" Width="974" Background="#FF33444F" Foreground="#FF7A99C7" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False" FontSize="18.667" FontFamily="Rockwell" MaxColumnWidth="150" IsReadOnly="True" IsTextSearchCaseSensitive="True" CanUserSortColumns="False" RowBackground="#FF1B2C3D" SelectionMode="Single" BorderBrush="{x:Null}" HorizontalGridLinesBrush="#FFB2BBE8" VerticalGridLinesBrush="#FFB2BBE8"/>
         </Grid>
         <Grid x:Name="panel_stats" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom" d:IsHidden="True">
             <Rectangle x:Name="visuel_panel_stats" Fill="#FF073000" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2"/>
