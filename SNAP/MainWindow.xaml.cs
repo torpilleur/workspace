@@ -84,12 +84,22 @@ namespace SNAP
             
             //regarder si les chanmps ne sont pas vides
             if (Nom_joueur != "" && Surnom_joueur != "" && Arme_primaire_joueur != "" && Arme_secondaire_joueur != "" && Profil_joueur != "")
-            //regarder si le joueur est déjà présent
+            
             {
+            //récupération de l'ID unique grâce au surom
                 var index_joueur =Contexte_database.Database.SqlQuery<int>("SELECT id FROM Entity_Joueurs WHERE Surnom ='" + Surnom_joueur + "'").ToList().ElementAt(0);
+            //Récupération du joueur et de ses paramètres.
+               var Joueur_tomodify= Contexte_database.Table_Joueurs.Find(index_joueur);
+                //Modifier le joueur grâce à une nouvelle entrée.
+                Entity_joueurs updatedUser = Joueur_tomodify;
+                updatedUser.Nom = Nom_joueur;
+                updatedUser.Surnom = Surnom_joueur;
+                updatedUser.Arme_primaire = Arme_primaire_joueur;
+                updatedUser.Arme_secondaire = Arme_secondaire_joueur;
+                updatedUser.Profil = Profil_joueur;
 
-               
-                Contexte_database.Database.ExecuteSqlCommand("UPDATE Entity_joueurs SET Arme_primaire ='"+ Arme_primaire_joueur+"',Arme_secondaire='"+Arme_secondaire_joueur+"',Profil='"+Profil_joueur+"' WHERE id="+ index_joueur);
+                // mise à jour et sauvegarde du contexte.
+                Contexte_database.Entry(Joueur_tomodify).CurrentValues.SetValues(updatedUser);
                 Contexte_database.SaveChanges();
                 return true;
             }
@@ -229,8 +239,39 @@ namespace SNAP
         {
             //todo:
             //system de checkbox pour sélectionner un joueur?
+            button_ajouter_joueur.IsEnabled = false;
+            button_modifier_joueur.IsEnabled = false;
+            bouton_stats.IsEnabled = false;
+            bouton_configuration.IsEnabled = false;
+            bouton_terrain.IsEnabled = false;
+            bouton_partie.IsEnabled = false;
             //récupération du nomm du joueur et suppression de la base de données aprés une demande de confirmation.
-            //message de confirmation
+            Entity_joueurs Joueur_selected = (Entity_joueurs)dataGrid.SelectedItem;
+            if(Joueur_selected!=null)
+            { 
+
+           
+
+               // Entity_joueurs Joueur_to_delete = Ctx_database_SNAP.Table_Joueurs.Find(index);
+                Ctx_database_SNAP.Table_Joueurs.Remove(Joueur_selected);
+                Ctx_database_SNAP.SaveChanges();
+                Afficher_Joueurs();
+
+                
+
+            }
+            else {
+                MessageBox.Show("Veuillez séléctionner un joueur dans la liste");
+                //rendre inactif les autres boutons
+
+
+            }
+            button_ajouter_joueur.IsEnabled = true;
+            button_modifier_joueur.IsEnabled = true;
+            bouton_stats.IsEnabled = true;
+            bouton_configuration.IsEnabled = true;
+            bouton_terrain.IsEnabled = true;
+            bouton_partie.IsEnabled = true;
         }
 
         private void panel_joueur_bouton_modifier_mouseleftButtonDown(object sender, MouseButtonEventArgs e)
@@ -243,7 +284,7 @@ namespace SNAP
             bouton_configuration.IsEnabled = false;
             bouton_terrain.IsEnabled = false;
             bouton_partie.IsEnabled = false;
-            //viderles champs:
+            //viderles champs de la popup:
             Modif_Nom.Text = "";
             Modif_Surnom.Text = "";
             Modif_Arme_primaire.Text = "";
@@ -254,10 +295,15 @@ namespace SNAP
             //system de checkbox pour sélectionner un joueur?
      
             int index = dataGrid.SelectedIndex;
+            
             if (index != -1)
             {
+                var Liste_joueurs = Ctx_database_SNAP.Database.SqlQuery<string>("SELECT Surnom FROM Entity_joueurs").ToList();
+                string _Surnom = Liste_joueurs.ElementAt(index);
 
-               Entity_joueurs Joueur_to_modify= Ctx_database_SNAP.Table_Joueurs.Find(index+1);
+                IEnumerable<Entity_joueurs> mds = Ctx_database_SNAP.Table_Joueurs.Where(
+                              p => p.Surnom == _Surnom);
+                Entity_joueurs Joueur_to_modify = mds.ElementAt(0);
 
                 //récupération du nom et du surnom
                 Modif_Nom.Text = Joueur_to_modify.Nom;
@@ -281,6 +327,7 @@ namespace SNAP
                 bouton_partie.IsEnabled = true;
 
             }
+            dataGrid.SelectedValue = null;
 
 
         }
@@ -321,5 +368,6 @@ namespace SNAP
             bouton_terrain.IsEnabled = true;
             bouton_partie.IsEnabled = true;
         }
+
     }
 }
