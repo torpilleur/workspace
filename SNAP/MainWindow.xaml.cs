@@ -37,7 +37,7 @@ namespace SNAP
       
        
 
-        /**************************************FIN FONCTIONS ajoutées par administrateur********************************/
+        /**************************************GESTION DES EVENEMENTS DU SOFT********************************/
 
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -99,9 +99,6 @@ namespace SNAP
          
         }
 
-    
-
-     
         private void Panel_joueur_bouton_ajouter_joueur_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
@@ -122,10 +119,8 @@ namespace SNAP
             Rens_arme_secondaire.Text = "";
             Rens_profil.Text = "";
 
-
         }
 
-       
 
         private void Popup_bouton_ajouter_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -164,8 +159,7 @@ namespace SNAP
 
         private void Panel_joueur_bouton_supprimer_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //todo:
-            //system de checkbox pour sélectionner un joueur?
+            
             button_ajouter_joueur.IsEnabled = false;
             button_modifier_joueur.IsEnabled = false;
             bouton_stats.IsEnabled = false;
@@ -181,8 +175,7 @@ namespace SNAP
             }
             else {
                 MessageBox.Show("Veuillez séléctionner un joueur dans la liste");
-                //rendre inactif les autres boutons
-
+               
 
             }
             button_ajouter_joueur.IsEnabled = true;
@@ -209,9 +202,6 @@ namespace SNAP
             Modif_Arme_primaire.Text = "";
             Modif_Arme_secondaire.Text = "";
             Modif_Profil.Text = "";
-
-
-            //system de checkbox pour sélectionner un joueur?
      
             int index = dataGrid.SelectedIndex;
             
@@ -253,11 +243,11 @@ namespace SNAP
 
         private void Popup_Modif_bouton_modifier_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //todo:
+            
             // récupération des données
             //mise à jour de la base de données
             bool Success_modif_joueur = Grid_panel_joueurs.Modifier_Joueurs(Ctx_database_SNAP, Modif_Nom.Text, Modif_Surnom.Text, Modif_Arme_primaire.Text, Modif_Arme_secondaire.Text, Modif_Profil.Text);
-            //message de confirmation base de donnée à jour.
+            
             Grid_panel_joueurs.Afficher_Joueurs(Ctx_database_SNAP, dataGrid);
         
             if (Success_modif_joueur == true)
