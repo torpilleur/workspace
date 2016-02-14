@@ -1585,7 +1585,15 @@
                     <TextBox x:Name="Modif_Profil" HorizontalAlignment="Left" Height="27" Margin="411,472,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213"/>
                 </Grid>
             </Popup>
-            <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="24,70,0,0" VerticalAlignment="Top" Height="501" Width="974" Background="#FF33444F" Foreground="#FF7A99C7" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False" FontSize="18.667" FontFamily="Rockwell" MaxColumnWidth="150" IsReadOnly="True" IsTextSearchCaseSensitive="True" CanUserSortColumns="False" RowBackground="#FF1B2C3D" SelectionMode="Single" BorderBrush="{x:Null}" HorizontalGridLinesBrush="#FFB2BBE8" VerticalGridLinesBrush="#FFB2BBE8"/>
+            <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="24,70,0,0" VerticalAlignment="Top" Height="501" Width="975" Background="#FF33444F" Foreground="#FF7A99C7" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False" FontSize="18.667" FontFamily="Rockwell" MaxColumnWidth="200" IsReadOnly="True" IsTextSearchCaseSensitive="True" CanUserSortColumns="False" RowBackground="#FF1B2C3D" SelectionMode="Single" BorderBrush="{x:Null}" HorizontalGridLinesBrush="#FFB2BBE8" VerticalGridLinesBrush="#FFB2BBE8" ColumnWidth="400">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="c1" ClipboardContentBinding="{x:Null}" Header="NOM" Width="190" Binding="{Binding Nom}"/>
+                    <DataGridTextColumn x:Name="c2" ClipboardContentBinding="{x:Null}" Header="SURNOM" Width="192" Binding="{Binding Surnom}"/>
+                    <DataGridTextColumn x:Name="c3" Binding="{Binding Arme_primaire}" ClipboardContentBinding="{x:Null}" Header="ARME PRIMAIRE" Width="195"/>
+                    <DataGridTextColumn x:Name="c4" Binding="{Binding Arme_secondaire}" ClipboardContentBinding="{x:Null}" Header="ARME SECONDAIRE" Width="195"/>
+                    <DataGridTextColumn x:Name="c5" Binding="{Binding Profil}" ClipboardContentBinding="{x:Null}" Header="PROFIL" Width="195"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
         <Grid x:Name="panel_stats" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom" d:IsHidden="True">
             <Rectangle x:Name="visuel_panel_stats" Fill="#FF073000" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2"/>

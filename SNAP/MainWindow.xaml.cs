@@ -32,13 +32,28 @@ namespace SNAP
 
         public SNAP_DATABASE Ctx_database_SNAP = new SNAP_DATABASE();
         
+        
 
 
         /**************************************FONCTIONS ajoutées par administrateur**************************/
         public void Afficher_Joueurs()
         {
-            
-            dataGrid.ItemsSource = Ctx_database_SNAP.Table_Joueurs.ToList();
+
+            List<Entity_joueurs> List_table_joueur = Ctx_database_SNAP.Table_Joueurs.ToList();
+            dataGrid.Items.Clear();
+          
+            for (int i = 0; i < List_table_joueur.Count(); i++)
+            {
+                Grid_data_panel_joueurs joueur_i=new Grid_data_panel_joueurs();
+                joueur_i.Nom = List_table_joueur[i].Nom;
+                joueur_i.Surnom = List_table_joueur[i].Surnom;
+                joueur_i.Arme_primaire = List_table_joueur[i].Arme_primaire;
+                joueur_i.Arme_secondaire = List_table_joueur[i].Arme_secondaire;
+                joueur_i.Profil = List_table_joueur[i].Profil;
+
+                dataGrid.Items.Add(joueur_i);
+            }
+        
 
 
 
@@ -81,15 +96,15 @@ namespace SNAP
         }
         public bool Modifier_Joueurs(SNAP_DATABASE Contexte_database, string Nom_joueur, string Surnom_joueur, string Arme_primaire_joueur, string Arme_secondaire_joueur, string Profil_joueur)
         {
-            
+
             //regarder si les chanmps ne sont pas vides
             if (Nom_joueur != "" && Surnom_joueur != "" && Arme_primaire_joueur != "" && Arme_secondaire_joueur != "" && Profil_joueur != "")
-            
+
             {
-            //récupération de l'ID unique grâce au surom
-                var index_joueur =Contexte_database.Database.SqlQuery<int>("SELECT id FROM Entity_Joueurs WHERE Surnom ='" + Surnom_joueur + "'").ToList().ElementAt(0);
-            //Récupération du joueur et de ses paramètres.
-               var Joueur_tomodify= Contexte_database.Table_Joueurs.Find(index_joueur);
+                //récupération de l'ID unique grâce au surom
+                var index_joueur = Contexte_database.Database.SqlQuery<int>("SELECT id FROM Entity_Joueurs WHERE Surnom ='" + Surnom_joueur + "'").ToList().ElementAt(0);
+                //Récupération du joueur et de ses paramètres.
+                var Joueur_tomodify = Contexte_database.Table_Joueurs.Find(index_joueur);
                 //Modifier le joueur grâce à une nouvelle entrée.
                 Entity_joueurs updatedUser = Joueur_tomodify;
                 updatedUser.Nom = Nom_joueur;
@@ -108,8 +123,16 @@ namespace SNAP
                 MessageBox.Show("Les champs ne doivent pas être vides" + "\nLes champs non applicables doivent être remplis avec NA");
                 return false;
             }
-
-
+        }
+        public void Supprimer_Joueurs(SNAP_DATABASE Contexte_database,Grid_data_panel_joueurs Joueur_selected)
+        {
+             //récupération de l'ID unique grâce au surom
+           var index_joueur = Contexte_database.Database.SqlQuery<int>("SELECT id FROM Entity_Joueurs WHERE Surnom ='" + Joueur_selected.Surnom.ToString() + "'").ToList().ElementAt(0);
+            //récupération de l'entité du joueur à supprimer
+           Entity_joueurs Joueur_to_delete = Contexte_database.Table_Joueurs.Find(index_joueur);
+            //suppression du joueur en base de donnée et sauvegarde
+            Contexte_database.Table_Joueurs.Remove(Joueur_to_delete);
+            Contexte_database.SaveChanges();      
         }
 
         /**************************************FIN FONCTIONS ajoutées par administrateur********************************/
@@ -246,18 +269,11 @@ namespace SNAP
             bouton_terrain.IsEnabled = false;
             bouton_partie.IsEnabled = false;
             //récupération du nomm du joueur et suppression de la base de données aprés une demande de confirmation.
-            Entity_joueurs Joueur_selected = (Entity_joueurs)dataGrid.SelectedItem;
+            Grid_data_panel_joueurs Joueur_selected = (Grid_data_panel_joueurs)dataGrid.SelectedItem;
             if(Joueur_selected!=null)
-            { 
-
-           
-
-               // Entity_joueurs Joueur_to_delete = Ctx_database_SNAP.Table_Joueurs.Find(index);
-                Ctx_database_SNAP.Table_Joueurs.Remove(Joueur_selected);
-                Ctx_database_SNAP.SaveChanges();
+            {
+                Supprimer_Joueurs(Ctx_database_SNAP, Joueur_selected);
                 Afficher_Joueurs();
-
-                
 
             }
             else {
