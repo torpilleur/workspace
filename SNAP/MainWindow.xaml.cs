@@ -55,7 +55,7 @@ namespace SNAP
             panel_joueur.Visibility = Visibility.Visible;
             panel_configuration.Visibility = Visibility.Hidden;
             panel_terrain.Visibility = Visibility.Hidden;
-            panel_video.Visibility = Visibility.Hidden;
+            panel_partie.Visibility = Visibility.Hidden;
             panel_stats.Visibility = Visibility.Hidden;
             Grid_panel_joueurs.Afficher_Joueurs(Ctx_database_SNAP, dataGrid);
         
@@ -67,7 +67,7 @@ namespace SNAP
             panel_stats.Visibility = Visibility.Visible;
             panel_configuration.Visibility = Visibility.Hidden;
             panel_terrain.Visibility = Visibility.Hidden;
-            panel_video.Visibility = Visibility.Hidden;
+            panel_partie.Visibility = Visibility.Hidden;
             panel_joueur.Visibility = Visibility.Hidden;
         }
 
@@ -76,13 +76,13 @@ namespace SNAP
             panel_terrain.Visibility = Visibility.Visible;
             panel_configuration.Visibility = Visibility.Hidden;
             panel_joueur.Visibility = Visibility.Hidden;
-            panel_video.Visibility = Visibility.Hidden;
+            panel_partie.Visibility = Visibility.Hidden;
             panel_stats.Visibility = Visibility.Hidden;
         }
 
         private void bouton_video_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            panel_video.Visibility = Visibility.Visible;
+            panel_partie.Visibility = Visibility.Visible;
             panel_configuration.Visibility = Visibility.Hidden;
             panel_terrain.Visibility = Visibility.Hidden;
             panel_joueur.Visibility = Visibility.Hidden;
@@ -94,7 +94,7 @@ namespace SNAP
             panel_configuration.Visibility = Visibility.Visible;
             panel_joueur.Visibility = Visibility.Hidden;
             panel_terrain.Visibility = Visibility.Hidden;
-            panel_video.Visibility = Visibility.Hidden;
+            panel_partie.Visibility = Visibility.Hidden;
             panel_stats.Visibility = Visibility.Hidden;
          
         }
