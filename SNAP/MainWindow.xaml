@@ -1737,21 +1737,17 @@
                     <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Date"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Rectangle x:Name="panel_infos_partie" Fill="#FF33444F" Margin="24,23,342.75,101.572" RadiusY="29" RadiusX="29" Stroke="#FF688CAF" StrokeThickness="2"/>
-            <Button x:Name="Boutton_partie_manuelle" Content="Enregistrement manuel" Height="40" Margin="24,0,0,39.818" VerticalAlignment="Bottom" Style="{DynamicResource ButtonStyle11}" Foreground="#FFFBF7F7" FontFamily="Lucida Calligraphy" FontSize="18.667" HorizontalAlignment="Left" Width="303"/>
-            <Button x:Name="Boutton_partie_manuelle_Copy" Content="Enregistrement auto" Height="40" Margin="372,0,342.75,39.818" VerticalAlignment="Bottom" Style="{DynamicResource ButtonStyle12}" Foreground="#FFFBF7F7" FontFamily="Lucida Calligraphy" FontSize="18.667"/>
-            <DatePicker x:Name="Calendrier_partie" Margin="112,0,0,116.572" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <TextBlock x:Name="Text_scenario_partie" HorizontalAlignment="Left" Height="23" Margin="125,37.39,0,0" TextWrapping="Wrap" Text="Liste des scénarios" VerticalAlignment="Top" Width="162" ToolTip="Sélectionner les scénarios qui composent la partie" Foreground="#FF7A99C7" FontSize="16" TextDecorations="Underline"/>
-            <TextBlock x:Name="Text_joueurs_partie" HorizontalAlignment="Left" Height="23" Margin="125,240,0,0" TextWrapping="Wrap" Text="Liste des joueurs" VerticalAlignment="Top" Width="162" ToolTip="Sélectionner les joueurs qui composent la partie" Foreground="#FF7A99C7" FontSize="16" TextDecorations="Underline"/>
-            <Rectangle x:Name="panel_infos_partie_Copy" Fill="#FF33444F" Margin="332,37,351.75,116.572" RadiusY="29" RadiusX="29" Stroke="#FF688CAF" StrokeThickness="2"/>
-            <ListBox x:Name="Joueurs_disponibles_list" HorizontalAlignment="Left" Margin="35,276,0,156.572" Width="124" Background="#FF02132B" Opacity="0.5"/>
-            <ListBox x:Name="Joueurs_participant_list" HorizontalAlignment="Left" Margin="203,276,0,156.572" Width="124" Background="#FF02132B" Opacity="0.5"/>
-            <ListBox x:Name="Scenar_disponibles_list" HorizontalAlignment="Left" Margin="35,70.39,0,0" Width="124" Height="163" VerticalAlignment="Top" Background="#FF02132B" Opacity="0.5"/>
-            <ListBox x:Name="Scenar_participant_list" HorizontalAlignment="Left" Margin="203,70.39,0,0" Width="124" Height="163" VerticalAlignment="Top" Background="#FF02132B" Opacity="0.5" Foreground="#FFF5EDED"/>
-            <Button x:Name="button_ajout_joueurs_partie" Content="&gt;&gt;&gt;" HorizontalAlignment="Left" Height="33" Margin="165,0,0,262.572" VerticalAlignment="Bottom" Width="33"/>
-            <Button x:Name="button_ajout_scenar_partie" Content="&gt;&gt;&gt;" HorizontalAlignment="Left" Height="33" Margin="165,94,0,0" VerticalAlignment="Top" Width="33"/>
-            <Button x:Name="button_supp_joueurs_partie" Content="&lt;&lt;&lt;" HorizontalAlignment="Left" Height="33" Margin="165,0,0,195.572" VerticalAlignment="Bottom" Width="33"/>
-            <Button x:Name="button_supp_scenar_partie" Content="&lt;&lt;&lt;" HorizontalAlignment="Left" Height="33" Margin="165,165,0,0" VerticalAlignment="Top" Width="33"/>
+            <Rectangle x:Name="panel_infos_partie" Fill="#FF33444F" Margin="24,23,343.133,36.572" RadiusY="29" RadiusX="29" Stroke="#FF688CAF" StrokeThickness="2"/>
+            <Button x:Name="Boutton_partie_manuelle" Content="Enregistrer &#xD;&#xA;les résultats" Height="85" Margin="454,0,0,251.572" VerticalAlignment="Bottom" Style="{DynamicResource ButtonStyle11}" Foreground="#FFFBF7F7" FontFamily="Lucida Calligraphy" FontSize="18.667" HorizontalAlignment="Left" Width="185"/>
+            <DatePicker x:Name="Calendrier_partie" Margin="152,0,0,89.572" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="24" Width="152"/>
+            <TextBlock x:Name="Text_joueurs_partie" HorizontalAlignment="Left" Height="23" Margin="164,129,0,0" TextWrapping="Wrap" Text="Liste des joueurs" VerticalAlignment="Top" Width="162" ToolTip="Sélectionner les joueurs qui composent la partie" Foreground="#FF7A99C7" FontSize="16" TextDecorations="Underline"/>
+            <ListBox x:Name="Joueurs_disponibles_list" HorizontalAlignment="Left" Margin="37,166,0,156.572" Width="167" Background="#FF02132B" Opacity="0.5"/>
+            <ListBox x:Name="Joueurs_participant_list" HorizontalAlignment="Left" Margin="257,166,0,156.572" Width="165" Background="#FF02132B" Opacity="0.5"/>
+            <Button x:Name="button_ajout_joueurs_partie" Content="&gt;&gt;&gt;" HorizontalAlignment="Left" Height="33" Margin="212,0,0,357.572" VerticalAlignment="Bottom" Width="33"/>
+            <Button x:Name="button_supp_joueurs_partie" Content="&lt;&lt;&lt;" HorizontalAlignment="Left" Height="33" Margin="212,0,0,268.572" VerticalAlignment="Bottom" Width="33"/>
+            <TextBlock x:Name="Text_nom_partie" HorizontalAlignment="Left" Height="23" Margin="164,54,0,0" TextWrapping="Wrap" Text="Nom de la partie" VerticalAlignment="Top" Width="162" ToolTip="Sélectionner les joueurs qui composent la partie" Foreground="#FF7A99C7" FontSize="16" TextDecorations="Underline"/>
+            <TextBox x:Name="textBox_partie_nom" HorizontalAlignment="Left" Height="23" Margin="152,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" ToolTip="Entrer un nom de partie"/>
+            <TextBlock x:Name="Text_nom_panel_partie" HorizontalAlignment="Left" Height="23" Margin="378,0,0,0" TextWrapping="Wrap" Text="Enregistrement  de résultats d'une partie" VerticalAlignment="Top" Width="310" ToolTip="Sélectionner les joueurs qui composent la partie" Foreground="#FF7A99C7" FontSize="16" TextDecorations="Underline"/>
         </Grid>
         <Grid x:Name="panel_configuration" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom" d:IsHidden="True">
             <Rectangle x:Name="visuel_panel_configuration" Fill="#FF1752CF" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2"/>

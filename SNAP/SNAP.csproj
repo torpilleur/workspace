@@ -103,6 +103,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201512281427104_InitialCreate.cs" />
+    <Compile Include="Migrations\201512281427104_InitialCreate.Designer.cs">
+      <DependentUpon>201512281427104_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608200716409_addJoueur.cs" />
+    <Compile Include="Migrations\201608200716409_addJoueur.Designer.cs">
+      <DependentUpon>201608200716409_addJoueur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608200953199_addpartie.cs" />
+    <Compile Include="Migrations\201608200953199_addpartie.Designer.cs">
+      <DependentUpon>201608200953199_addpartie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -116,6 +129,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201512281427104_InitialCreate.resx">
+      <DependentUpon>201512281427104_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608200716409_addJoueur.resx">
+      <DependentUpon>201608200716409_addJoueur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608200953199_addpartie.resx">
+      <DependentUpon>201608200953199_addpartie.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
