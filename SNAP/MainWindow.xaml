@@ -1918,7 +1918,7 @@
         <Grid x:Name="panel_stats" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom" d:IsHidden="True">
             <Rectangle x:Name="visuel_panel_stats" Fill="#FF073000" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2"/>
         </Grid>
-        <Grid x:Name="panel_terrain" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom">
+        <Grid x:Name="panel_terrain" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom" d:IsHidden="True">
             <Rectangle x:Name="visuel_panel_terrain" Fill="#FF33444F" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2" Stroke="#FF4B0000"/>
             <RichTextBox x:Name="Text_descriptif" HorizontalAlignment="Right" Margin="0,111.5,28.25,34.072" Width="432">
                 <FlowDocument>
@@ -1940,7 +1940,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        <Grid x:Name="panel_partie" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom" d:IsHidden="True">
+        <Grid x:Name="panel_partie" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom">
             <Rectangle x:Name="visuel_panel_partie" Fill="#FF33444F" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2" Stroke="#FF4B0000"/>
             <DataGrid x:Name="partie_datagrid" HorizontalAlignment="Right" Margin="0,23,10,36.572" Width="314.75" Background="#FF33444F" Foreground="#FF7A99C7" FontFamily="Rockwell" FontSize="18.667" MinColumnWidth="155" MaxColumnWidth="200">
                 <DataGrid.Columns>
