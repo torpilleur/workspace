@@ -1239,7 +1239,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid x:Name="grid_manuel">
+                        <Grid x:Name="grid_manuel" MouseLeftButtonDown="Boutton_partie_manuelle_MouseLeftButtonDown">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="52*"/>
                                 <ColumnDefinition Width="3*"/>
@@ -1550,6 +1550,80 @@
                             <Trigger Property="IsMouseOver" Value="True"/>
                             <Trigger Property="IsPressed" Value="True"/>
                             <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle16" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" MouseLeftButtonDown="button_ajout_joueurs_partie_MouseLeftButtonDown">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle17" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" MouseLeftButtonDown="button_supp_joueurs_partie_MouseLeftButtonDown">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -1949,13 +2023,13 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Rectangle x:Name="panel_infos_partie" Fill="#FF33444F" Margin="24,23,343.133,36.572" RadiusY="29" RadiusX="29" Stroke="#FF688CAF" StrokeThickness="2"/>
-            <Button x:Name="Boutton_partie_manuelle" Content="Enregistrer &#xD;&#xA;les résultats" Height="85" Margin="454,0,0,251.572" VerticalAlignment="Bottom" Style="{DynamicResource ButtonStyle11}" Foreground="#FFFBF7F7" FontFamily="Lucida Calligraphy" FontSize="18.667" HorizontalAlignment="Left" Width="185"/>
-            <DatePicker x:Name="Calendrier_partie" Margin="152,0,0,89.572" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="24" Width="152"/>
-            <TextBlock x:Name="Text_joueurs_partie" HorizontalAlignment="Left" Height="23" Margin="164,129,0,0" TextWrapping="Wrap" Text="Liste des joueurs" VerticalAlignment="Top" Width="162" ToolTip="Sélectionner les joueurs qui composent la partie" Foreground="#FF7A99C7" FontSize="16" TextDecorations="Underline"/>
-            <ListBox x:Name="Joueurs_disponibles_list" HorizontalAlignment="Left" Margin="37,166,0,156.572" Width="167" Background="#FF02132B" Opacity="0.5"/>
-            <ListBox x:Name="Joueurs_participant_list" HorizontalAlignment="Left" Margin="257,166,0,156.572" Width="165" Background="#FF02132B" Opacity="0.5"/>
-            <Button x:Name="button_ajout_joueurs_partie" Content="&gt;&gt;&gt;" HorizontalAlignment="Left" Height="33" Margin="212,0,0,357.572" VerticalAlignment="Bottom" Width="33"/>
-            <Button x:Name="button_supp_joueurs_partie" Content="&lt;&lt;&lt;" HorizontalAlignment="Left" Height="33" Margin="212,0,0,268.572" VerticalAlignment="Bottom" Width="33"/>
+            <Button x:Name="Boutton_partie_manuelle" Content="Enregistrer &#xA;la partie" Height="85" Margin="454,0,0,251.572" VerticalAlignment="Bottom" Style="{DynamicResource ButtonStyle11}" Foreground="#FFFBF7F7" FontFamily="Lucida Calligraphy" FontSize="18.667" HorizontalAlignment="Left" Width="185"/>
+            <DatePicker x:Name="Calendrier_partie" Margin="152,0,0,89.572" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="24" Width="152" Text="Sélectioner une date"/>
+            <TextBlock x:Name="Text_joueurs_partie" HorizontalAlignment="Left" Height="23" Margin="164,129,0,0" TextWrapping="Wrap" Text="Joueurs présents" VerticalAlignment="Top" Width="162" ToolTip="Sélectionner les joueurs qui composent la partie" Foreground="#FF7A99C7" FontSize="16" TextDecorations="Underline"/>
+            <ListBox x:Name="Joueurs_disponibles_list" HorizontalAlignment="Left" Margin="37,166,0,156.572" Width="167" Background="#FF02132B" Opacity="0.5" Foreground="#FF7A99C7" FontSize="18.667" FontFamily="Rockwell"/>
+            <ListBox x:Name="Joueurs_participant_list" HorizontalAlignment="Left" Margin="257,166,0,156.572" Width="165" Background="#FF02132B" Opacity="0.5" BorderBrush="#FF7A99C7" FontSize="18.667" FontFamily="Rockwell" Foreground="#FF9BB1D3"/>
+            <Button x:Name="button_ajout_joueurs_partie" Content="&gt;&gt;&gt;" HorizontalAlignment="Left" Height="33" Margin="212,0,0,357.572" VerticalAlignment="Bottom" Width="33" ToolTip="Ajouter un joueur" MouseLeftButtonDown="button_ajout_joueurs_partie_MouseLeftButtonDown" Style="{DynamicResource ButtonStyle16}"/>
+            <Button x:Name="button_supp_joueurs_partie" Content="&lt;&lt;&lt;" HorizontalAlignment="Left" Height="33" Margin="212,0,0,268.572" VerticalAlignment="Bottom" Width="33" ToolTip="Supprimer un joueur" Style="{DynamicResource ButtonStyle17}" Foreground="#FF02060E"/>
             <TextBlock x:Name="Text_nom_partie" HorizontalAlignment="Left" Height="23" Margin="164,54,0,0" TextWrapping="Wrap" Text="Nom de la partie" VerticalAlignment="Top" Width="162" ToolTip="Sélectionner les joueurs qui composent la partie" Foreground="#FF7A99C7" FontSize="16" TextDecorations="Underline"/>
             <TextBox x:Name="textBox_partie_nom" HorizontalAlignment="Left" Height="23" Margin="152,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" ToolTip="Entrer un nom de partie"/>
             <TextBlock x:Name="Text_nom_panel_partie" HorizontalAlignment="Left" Height="23" Margin="378,0,0,0" TextWrapping="Wrap" Text="Enregistrement  de résultats d'une partie" VerticalAlignment="Top" Width="310" ToolTip="Sélectionner les joueurs qui composent la partie" Foreground="#FF7A99C7" FontSize="16" TextDecorations="Underline"/>

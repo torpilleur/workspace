@@ -92,6 +92,7 @@
     <Compile Include="button_partie_enregistrement.xaml.cs">
       <DependentUpon>button_partie_enregistrement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Database\Grid_data_panel_partie.cs" />
     <Compile Include="Database\Grid_data_panel_joueurs.cs" />
     <Compile Include="click me control.xaml.cs">
       <DependentUpon>click me control.xaml</DependentUpon>

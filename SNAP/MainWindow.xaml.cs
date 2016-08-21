@@ -32,6 +32,10 @@ namespace SNAP
 
         public SNAP_DATABASE Ctx_database_SNAP = new SNAP_DATABASE();
         public Grid_data_panel_joueurs Grid_panel_joueurs = new Grid_data_panel_joueurs();
+
+        /***Variable globales projet***/
+    
+
         
        
       
@@ -87,6 +91,18 @@ namespace SNAP
             panel_terrain.Visibility = Visibility.Hidden;
             panel_joueur.Visibility = Visibility.Hidden;
             panel_stats.Visibility = Visibility.Hidden;
+            //TODOajouter l'affichage de la datagrid liste de partie
+            //todo affichage liste de joueurs dans la liste
+            //Récupération des données via la base de données
+            List<Entity_joueurs> List_table_joueur = Ctx_database_SNAP.Table_Joueurs.ToList();
+            //réinitialiser le tableau d'affichage
+            Joueurs_disponibles_list.Items.Clear();
+
+            for (int i = 0; i < List_table_joueur.Count(); i++)
+            {
+                String Surnom = List_table_joueur[i].Surnom;
+                Joueurs_disponibles_list.Items.Add(Surnom);
+            }
         }
 
         private void bouton_configuration_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -279,5 +295,31 @@ namespace SNAP
             bouton_partie.IsEnabled = true;
         }
 
+        private void button_ajout_joueurs_partie_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            
+            
+            Joueurs_participant_list.Items.Add(Joueurs_disponibles_list.SelectedItem);
+        }
+
+        private void button_supp_joueurs_partie_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Joueurs_participant_list.Items.Remove(Joueurs_participant_list.SelectedItem);
+        }
+
+        private void Boutton_partie_manuelle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //Vérification que la date, nom de la partie et au moins un participants soit préésent
+            if (Joueurs_participant_list.Items.Count == 0 || textBox_partie_nom.Text == ""||Calendrier_partie.Text=="")
+            {
+                MessageBox.Show("Enregistrement de la partie impossible: Le nom de partie, la liste des participants et la date doivent être renseignées");
+            }
+            else {
+                //todo peupler la abse de donnée et afficher la partie dans la data grid (prevoir la possibilité de supprimer modifier la partie selectionnée
+                //Renseigner le nombre de kill/ stats 
+                //peupler la base Occurence (il faut créer en prmeir la base des trophées)
+
+            }
+        }
     }
 }
