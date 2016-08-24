@@ -891,7 +891,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid MouseLeftButtonDown="Popup_bouton_ajouter_MouseLeftButtonDown">
+                        <Grid MouseLeftButtonDown="Popup_bouton_ajouter_trophe_MouseLeftButtonDown">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal"/>
@@ -946,7 +946,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid MouseLeftButtonDown="Popup_bouton_annuler_MouseleftButtonDown">
+                        <Grid MouseLeftButtonDown="Popup_bouton_annuler_trophe_MouseleftButtonDown">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal"/>
@@ -1129,46 +1129,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid MouseLeftButtonDown="Popup_Modif_bouton_modifier_MouseLeftButtonDown">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="MouseOver"/>
-                                    <VisualState x:Name="Pressed">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill)" Storyboard.TargetName="rectangle">
-                                                <DiscreteObjectKeyFrame KeyTime="0">
-                                                    <DiscreteObjectKeyFrame.Value>
-                                                        <RadialGradientBrush>
-                                                            <GradientStop Color="#FF071F32" Offset="0.051"/>
-                                                            <GradientStop Color="#FF2095F7" Offset="1"/>
-                                                        </RadialGradientBrush>
-                                                    </DiscreteObjectKeyFrame.Value>
-                                                </DiscreteObjectKeyFrame>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Disabled"/>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Rectangle x:Name="rectangle" RadiusY="12.669" RadiusX="12.669" RenderTransformOrigin="0.5,0.5" Stroke="#FF080807" StrokeThickness="2">
-                                <Rectangle.Fill>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <GradientStop Color="#FF071F32" Offset="0.051"/>
-                                        <GradientStop Color="#FF2095F7" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Rectangle.Fill>
-                                <Rectangle.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform/>
-                                        <SkewTransform/>
-                                        <RotateTransform Angle="-0.813"/>
-                                        <TranslateTransform/>
-                                    </TransformGroup>
-                                </Rectangle.RenderTransform>
-                            </Rectangle>
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Grid>
+                        
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsFocused" Value="True"/>
                             <Trigger Property="IsDefaulted" Value="True"/>
@@ -1184,7 +1145,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid MouseLeftButtonDown="Popup_Modif_bouton_annuler_MouseleftButtonDown">
+                        <Grid MouseLeftButtonDown="Popup_Modif_bouton_annuler_trophe_MouseleftButtonDown">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal"/>
@@ -1367,7 +1328,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid>
+                        <Grid MouseLeftButtonDown="Boutton_ajouter_trophe_MouseLeftButtonDown">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="52*"/>
                                 <ColumnDefinition Width="3*"/>
@@ -1992,9 +1953,29 @@
         <Grid x:Name="panel_stats" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom" d:IsHidden="True">
             <Rectangle x:Name="visuel_panel_stats" Fill="#FF073000" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2"/>
         </Grid>
-        <Grid x:Name="panel_terrain" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom" d:IsHidden="True">
-            <Rectangle x:Name="visuel_panel_terrain" Fill="#FF33444F" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2" Stroke="#FF4B0000"/>
-            <RichTextBox x:Name="Text_descriptif" HorizontalAlignment="Right" Margin="0,111.5,28.25,34.072" Width="432">
+        <Grid x:Name="panel_terrain" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom">
+            <Rectangle x:Name="visuel_panel_terrain" Fill="#FF33444F" Margin="10,-1,0.133,-0.428" RadiusY="29" RadiusX="29" StrokeThickness="2" Stroke="#FF4B0000"/>
+            <Popup x:Name="Popup_Rens_Trophe" Margin="0,0,0,-264" AllowsTransparency="True" Placement="Absolute" IsManipulationEnabled="True" PopupAnimation="Slide">
+                <Grid x:Name="Popup_content_Rens_Trophe" Height="588.77" Width="934.274" RenderTransformOrigin="0.5,0.5" IsManipulationEnabled="True">
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0.233"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <Rectangle x:Name="Visuel_content_Rens_Trophe" Fill="#FF021C42" Margin="205.147,139.285,254.577,0" Stroke="White" RadiusY="41.459" RadiusX="41.459" Opacity="0.9" StrokeThickness="2" IsManipulationEnabled="True"/>
+                    <TextBlock x:Name="Label_Rens_Trophe" HorizontalAlignment="Left" Height="43.48" Margin="229.391,139.285,0,0" TextWrapping="Wrap" Text="Ajouter un trophé" VerticalAlignment="Top" Width="268.518" Foreground="#FFF7F4F4" FontSize="21.333" FontFamily="Lucida Bright" FontWeight="Bold" TextDecorations="{x:Null}"/>
+                    <TextBlock x:Name="Text_nom_trophe" HorizontalAlignment="Left" Height="27.577" Margin="229.391,210.908,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="176.381" FontSize="18.667" Foreground="#FFF9F9F9"><Run Text="Nom "/><Run Text="                    "/><Run Text=":"/><Run Text=" "/></TextBlock>
+                    <TextBlock x:Name="Text_surnom_trophe" HorizontalAlignment="Left" Margin="229.391,0,0,160.201" TextWrapping="Wrap" Width="164.389" FontSize="18.667" Foreground="#FFF9F9F9" Height="78.619" VerticalAlignment="Bottom"><Run Text="Condition d'obtention"/><Run Text="          :"/></TextBlock>
+                    <Button x:Name="Bouton_ajouter_trophe_popup_Rens" Content="Ajouter" HorizontalAlignment="Left" Height="35.462" Margin="258.946,0,0,22.387" Style="{DynamicResource ButtonStyle5}" VerticalAlignment="Bottom" Width="134.834" FontSize="18.667" FontFamily="Lucida Bright" Foreground="#FFF1ECEC"/>
+                    <Button x:Name="Bouton_annuler_trophepopup_Rens" Content="Annuler" Height="35.462" Margin="0,0,310.468,22.387" Style="{DynamicResource ButtonStyle6}" VerticalAlignment="Bottom" FontSize="18.667" FontFamily="Lucida Bright" Foreground="#FFF1ECEC" HorizontalAlignment="Right" Width="134.834"/>
+                    <TextBox x:Name="Rens_nom_trophe" HorizontalAlignment="Left" Height="23" Margin="411,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
+                    <TextBox x:Name="Rens_description_trophe" HorizontalAlignment="Left" Height="216.572" Margin="411,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="224.987"/>
+                </Grid>
+            </Popup>
+            <RichTextBox x:Name="Text_descriptif" HorizontalAlignment="Right" Margin="0,253,163.133,216.572" Width="432">
                 <FlowDocument>
                     <Paragraph>
                         <Run Text="RichTextBox"/>
@@ -2003,18 +1984,18 @@
             </RichTextBox>
             <Grid x:Name="panel_bouton_scenario" Height="55" Margin="85,7,89.75,0" VerticalAlignment="Top">
                 <Rectangle x:Name="visual_panel_bouton_scenario" Fill="#FF02132B" RadiusY="21" RadiusX="21" StrokeThickness="2" Opacity="0.5"/>
-                <Button x:Name="button_ajout_scenario" Content="Ajouter" HorizontalAlignment="Left" Margin="79,10,0,10.5" Width="166.5" Style="{DynamicResource ButtonStyle13}" Foreground="#FFF5EFEF" FontFamily="Lucida Calligraphy" FontSize="18.667"/>
+                <Button x:Name="button_ajout_trophe" Content="Ajouter" HorizontalAlignment="Left" Margin="167.5,10,0,10.5" Width="166.5" Style="{DynamicResource ButtonStyle13}" Foreground="#FFF5EFEF" FontFamily="Lucida Calligraphy" FontSize="18.667"/>
+                <Button x:Name="button_supprimer_trophe" Content="Supprimer" Margin="0,10,221,10.5" Style="{DynamicResource ButtonStyle14}" Foreground="#FFF5EFEF" FontFamily="Lucida Calligraphy" FontSize="18.667" HorizontalAlignment="Right" Width="166.5"/>
             </Grid>
-            <Button x:Name="button_ajout_scenario_Copy" Content="Supprimer" Margin="0,17,181.25,0" Style="{DynamicResource ButtonStyle14}" Foreground="#FFF5EFEF" FontFamily="Lucida Calligraphy" FontSize="18.667" Height="34.5" VerticalAlignment="Top" HorizontalAlignment="Right" Width="166.5"/>
-            <Button x:Name="button_ajout_scenario_Copy1" Content="Modifier" Margin="422.5,17,428.75,0" Style="{DynamicResource ButtonStyle15}" Foreground="#FFF5EFEF" FontFamily="Lucida Calligraphy" FontSize="18.667" Height="34.5" VerticalAlignment="Top"/>
-            <TextBox x:Name="label_descriptif" HorizontalAlignment="Right" Height="31" Margin="0,75.5,233.75,0" TextWrapping="Wrap" Text="Description du scenario" VerticalAlignment="Top" Width="222" TextDecorations="Underline" FontSize="18.667" Background="{x:Null}" Foreground="#FF7A99C7" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" IsReadOnly="True"/>
-            <DataGrid x:Name="Scenario_datagrid" HorizontalAlignment="Left" Margin="37,106.5,0,22.072" Width="235.5">
+            <TextBox x:Name="label_descriptif" HorizontalAlignment="Right" Height="30" Margin="0,204,245.133,0" TextWrapping="Wrap" Text="Condition d'obtention du trophé" VerticalAlignment="Top" Width="301" TextDecorations="Underline" FontSize="18.667" Background="{x:Null}" Foreground="#FF7A99C7" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" IsReadOnly="True"/>
+            <TextBox x:Name="label_liste_trophe" HorizontalAlignment="Right" Height="30" Margin="0,76,667.133,0" TextWrapping="Wrap" Text="Liste de trophés" VerticalAlignment="Top" Width="301" TextDecorations="Underline" FontSize="18.667" Background="{x:Null}" Foreground="#FF7A99C7" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" IsReadOnly="True"/>
+            <DataGrid x:Name="trophee_datagrid" HorizontalAlignment="Right" Margin="0,123,812.133,9.572" Width="156" Background="#FF33444F" Foreground="#FF7A99C7" FontFamily="Rockwell" FontSize="18.667" MinColumnWidth="155" MaxColumnWidth="200" SelectionChanged="trophee_datagrid_SelectionChanged">
                 <DataGrid.Columns>
-                    <DataGridTextColumn CanUserReorder="False" FontSize="18.667" FontFamily="Rockwell" Header="Liste des scenarios"/>
+                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Liste des trophés" Foreground="#FF33444F"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        <Grid x:Name="panel_partie" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom">
+        <Grid x:Name="panel_partie" Margin="26,0,108.867,58.428" Height="595.572" VerticalAlignment="Bottom" d:IsHidden="True">
             <Rectangle x:Name="visuel_panel_partie" Fill="#FF33444F" Margin="10,0,0,0" RadiusY="29" RadiusX="29" StrokeThickness="2" Stroke="#FF4B0000"/>
             <DataGrid x:Name="partie_datagrid" HorizontalAlignment="Right" Margin="0,23,10,36.572" Width="314.75" Background="#FF33444F" Foreground="#FF7A99C7" FontFamily="Rockwell" FontSize="18.667" MinColumnWidth="155" MaxColumnWidth="200">
                 <DataGrid.Columns>

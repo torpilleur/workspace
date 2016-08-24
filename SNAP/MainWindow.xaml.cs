@@ -32,14 +32,15 @@ namespace SNAP
 
         public SNAP_DATABASE Ctx_database_SNAP = new SNAP_DATABASE();
         public Grid_data_panel_joueurs Grid_panel_joueurs = new Grid_data_panel_joueurs();
+        public Grid_data_panel_trophe Grid_panel_trophe = new Grid_data_panel_trophe();
 
         /***Variable globales projet***/
-    
 
-        
-       
-      
-       
+
+
+
+
+
 
         /**************************************GESTION DES EVENEMENTS DU SOFT********************************/
 
@@ -61,7 +62,7 @@ namespace SNAP
             panel_terrain.Visibility = Visibility.Hidden;
             panel_partie.Visibility = Visibility.Hidden;
             panel_stats.Visibility = Visibility.Hidden;
-            Grid_panel_joueurs.Afficher_Joueurs(Ctx_database_SNAP, dataGrid);
+            Grid_panel_joueurs.Afficher_Joueurs(Ctx_database_SNAP, trophee_datagrid);
         
 
         }
@@ -82,6 +83,7 @@ namespace SNAP
             panel_joueur.Visibility = Visibility.Hidden;
             panel_partie.Visibility = Visibility.Hidden;
             panel_stats.Visibility = Visibility.Hidden;
+            Grid_panel_trophe.Afficher_Trophes(Ctx_database_SNAP, dataGrid);
         }
 
         private void bouton_video_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -321,5 +323,62 @@ namespace SNAP
 
             }
         }
+
+        private void Boutton_ajouter_trophe_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //afficher la popup
+            Popup_Rens_Trophe.IsOpen = true;
+            //rendre inactif les autres boutons
+            button_modifier_joueur.IsEnabled = false;
+            button_supprimer_joueur.IsEnabled = false;
+            bouton_stats.IsEnabled = false;
+            bouton_configuration.IsEnabled = false;
+            bouton_joueurs.IsEnabled = false;
+            bouton_partie.IsEnabled = false;
+
+            //vider les champs
+            Rens_nom_trophe.Text = "";
+            Rens_description_trophe.Text = "";
+         
+
+        }
+
+        private void Popup_bouton_ajouter_trophe_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            bool Success_ajout_trophe = false;
+
+            //ajouter le joueur en base de donnée aprés vérification de l'existant (pas deux joueurs avec le meme nom)
+            Success_ajout_trophe = Grid_panel_trophe.Ajouter_Trophes(Ctx_database_SNAP, Rens_nom_trophe.Text.ToString(), Rens_description_trophe.Text.ToString());
+            Grid_panel_trophe.Afficher_Trophes(Ctx_database_SNAP, dataGrid);
+
+            if (Success_ajout_trophe == true)
+            {
+                //fermer la popup
+                Popup_Rens_Trophe.IsOpen = false;
+                //rendre les autres bouons actifs
+               
+                button_supprimer_trophe.IsEnabled = true;
+                bouton_stats.IsEnabled = true;
+                bouton_configuration.IsEnabled = true;
+                bouton_joueurs.IsEnabled = true;
+                bouton_partie.IsEnabled = true;
+            }
+
+        }
+
+        private void Popup_bouton_annuler_trophe_MouseleftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //pas de récupération de données => fermer la popup
+            Popup_Rens_Trophe.IsOpen = false;
+            //rendre les autres boutons actifs
+           
+            button_supprimer_trophe.IsEnabled = true;
+            bouton_stats.IsEnabled = true;
+            bouton_configuration.IsEnabled = true;
+            bouton_joueurs.IsEnabled = true;
+            bouton_partie.IsEnabled = true;
+
+        }
+        
     }
 }
